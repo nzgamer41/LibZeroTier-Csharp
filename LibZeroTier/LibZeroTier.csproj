@@ -6,6 +6,7 @@
     <Company>Alex Cheer</Company>
     <Description>A C# Library to control ZeroTier One, the Windows client</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

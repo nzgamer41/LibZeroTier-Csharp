@@ -51,9 +51,8 @@ namespace LibZeroTier
             if (!File.Exists(localZtDir + "\\authtoken.secret") || !File.Exists(localZtDir + "\\zerotier-one.port"))
             {
                 // launch external process to copy file into place
-                String curPath = System.Reflection.Assembly.GetEntryAssembly().Location;
-                int index = curPath.LastIndexOf("\\");
-                curPath = curPath.Substring(0, index);
+                
+                String curPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\ZeroTier\\One";
                 ProcessStartInfo startInfo = new ProcessStartInfo(curPath + "\\copyutil.exe", "\"" + globalZtDir + "\"" + " " + "\"" + localZtDir + "\"");
                 startInfo.Verb = "runas";
 
