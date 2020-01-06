@@ -26,7 +26,31 @@ namespace LibZeroTier
 
         private string ZeroTierAddress = "";
 
+        /// <summary>
+        /// Checks whether a specific network ID is connected on your system.
+        /// </summary>
+        /// <param name="id">Hexadecimal ID of the network you're looking for</param>
+        /// <returns>True if the ID exists in the network list, false if not</returns>
+        private bool findNetwork(string id)
+        {
+            if (GetStatus().Online)
+            {
+                List<ZeroTierNetwork> currentNetworks = GetNetworks();
+                foreach (var i in currentNetworks)
+                {
+                    if (i.NetworkId == id)
+                    {
+                        return true;
+                    }
+                }
 
+                return false;
+            }
+            else
+            {
+                throw new LibZeroTierException("ZeroTier appears to be offline.");
+            }
+        }
         private static bool initHandler(bool resetToken = false)
         {
             String localZtDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\ZeroTier\\One";
